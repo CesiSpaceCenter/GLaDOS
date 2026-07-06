@@ -15,7 +15,7 @@ namespace bnp {
     void reset();
     void init();
     void sleep(long msecs);
-    void create_task(TaskFunction_t func, UBaseType_t priority, char* name);
+    void create_task(TaskFunction_t func, UBaseType_t priority, const char* name);
 };
 
 #endif

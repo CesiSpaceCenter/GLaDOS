@@ -1,3 +1,6 @@
+#ifndef _BNP_ANALOGINPUT_H
+#define _BNP_ANALOGINPUT_H
+
 #include <Arduino.h>
 
 namespace bnp {
@@ -20,3 +23,5 @@ namespace bnp {
         int pin;
     };
 };
+
+#endif

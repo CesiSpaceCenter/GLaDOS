@@ -36,7 +36,7 @@ void bnp::sleep(long msecs) {
     }
 }
 
-void bnp::create_task(TaskFunction_t func, UBaseType_t priority, char* name) {
+void bnp::create_task(TaskFunction_t func, UBaseType_t priority, const char* name) {
     portBASE_TYPE s = xTaskCreate(func, name, configMINIMAL_STACK_SIZE, NULL, priority, NULL);
-    if (s != pdPASS) bnp::panic(strcat("Could not init task ", name));
+    if (s != pdPASS) bnp::panic(strcat((char*)"Could not init task ", name));
 }

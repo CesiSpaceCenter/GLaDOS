@@ -1,3 +1,6 @@
+#ifndef _BNP_DIGITALINPUT_H
+#define _BNP_DIGITALINPUT_H
+
 #include <Arduino.h>
 
 namespace bnp {
@@ -33,3 +36,5 @@ namespace bnp {
         bool inverted;
     };
 };
+
+#endif
