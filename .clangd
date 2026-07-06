@@ -1,0 +1,5 @@
+CompileFlags:
+  Add:
+    - -U__GNUC__
+    - -D__GNUC__=12
+  Compiler: ~/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc

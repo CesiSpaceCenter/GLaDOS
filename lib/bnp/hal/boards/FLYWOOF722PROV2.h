@@ -21,7 +21,11 @@
 
 #pragma once
 
-#define BEEPER PC14
+#include <Arduino.h>
+
+#define ARCH_STM32
+
+#define PIN_BEEPER PC14
 #define PIN_S1 PB1
 #define PIN_S2 PB4
 #define PIN_S3 PB3
@@ -34,15 +38,15 @@
 #define PIN_LED PC15
 
 
-#define UART1_ENABLE true
+#define UART1_ENABLE false
 #define PIN_UART1_TX PA9
 #define PIN_UART1_RX PA10
 
-#define UART2_ENABLE false
+#define UART2_ENABLE true
 #define PIN_UART2_TX PA2
 #define PIN_UART2_RX PA3
 
-#define UART3_ENABLE true
+#define UART3_ENABLE false
 #define PIN_UART3_TX PB10
 #define PIN_UART3_RX PB11
 
@@ -63,7 +67,7 @@
 #define PIN_I2C1_SCL PB8
 #define PIN_I2C1_SDA PB9
 
-#define I2C2_ENABLE false
+#define I2C2_ENABLE true
 #define PIN_I2C2_SCL PB10
 #define PIN_I2C2_SDA PB11
 

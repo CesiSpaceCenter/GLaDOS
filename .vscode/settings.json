@@ -1,0 +1,49 @@
+{
+    "platformio-ide.toolbar": [
+        {
+              "text": "$(home)",
+              "tooltip": "PlatformIO: Home",
+              "commands": "platformio-ide.showHome"
+            },
+            {
+              "text": "$(check)",
+              "tooltip": "PlatformIO: Build",
+              "commands": "platformio-ide.build"
+            },
+            {
+              "text": "$(arrow-right)",
+              "tooltip": "PlatformIO: Upload",
+              "commands": "platformio-ide.upload"
+            },
+            {
+              "text": "$(trashcan)",
+              "tooltip": "PlatformIO: Clean",
+              "commands": "platformio-ide.clean"
+            },
+            {
+              "text": "$(plug)",
+              "tooltip": "PlatformIO: Serial Monitor",
+              "commands": "platformio-ide.serialMonitor"
+            },
+            {
+              "text": "$(terminal)",
+              "tooltip": "PlatformIO: New Terminal",
+              "commands": "platformio-ide.newTerminal"
+            },
+            {
+              "text": "$(extensions-view-icon)",
+              "tooltip": "Make compile database",
+              "commands": [
+                  {
+                      "id": "platformio-ide.runPIOCoreCommand",
+                      "args": "pio run -t compiledb"
+                  }
+              ]
+            },
+            {
+              "text": "$(search-refresh)",
+              "tooltip": "Restart clangd",
+              "commands": "clangd.restart"
+            }
+    ]
+}
