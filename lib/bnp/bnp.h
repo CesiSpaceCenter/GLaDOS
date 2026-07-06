@@ -15,6 +15,7 @@ namespace bnp {
     void reset();
     void init();
     void sleep(long msecs);
+    void jump_to_bootloader(void);
     void create_task(TaskFunction_t func, UBaseType_t priority, const char* name);
 };
 
