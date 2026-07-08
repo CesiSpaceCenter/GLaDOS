@@ -7,6 +7,7 @@
 #include "hal/spi.h"
 #include "hal/uart.h"
 
+#include <string>
 
 namespace bnp {
     inline I2CManager i2c;
@@ -14,6 +15,7 @@ namespace bnp {
     inline UARTManager uart;
 
     void panic(const char*);
+    void panic(std::string);
     void reset();
     void init();
     void sleep(long msecs);

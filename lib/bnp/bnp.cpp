@@ -6,14 +6,19 @@
 
 void bnp::panic(const char* message) {
     digitalWrite(PIN_LED, LOW);
-    while (true) {
-        if (Serial.available()) {
-            bnp::reset();
+    Serial.println("---- PANIC ----");
+    Serial.println(message);
+    Serial.println("type 'b' to reboot into bootloader");
+    for (int i = 15; i >= 0; i--) {
+        if (Serial.available() && Serial.read() == 'b') {
+            bnp::jump_to_bootloader();
         }
-        Serial.println("---- PANIC ----");
-        Serial.println(message);
+        Serial.print("reseting in "); Serial.print(i); Serial.println(" seconds");
         delay(1000);
     }
+    bnp::reset();
+}
+
 void bnp::panic(std::string message) {
     bnp::panic(message.c_str());
 }
