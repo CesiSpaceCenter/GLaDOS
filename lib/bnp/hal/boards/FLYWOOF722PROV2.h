@@ -76,7 +76,7 @@
 #define PIN_I2C3_SDA -1 // I2C3_SDA_PIN
 
 
-#define SPI1_ENABLE false
+#define SPI1_ENABLE true
 #define PIN_SPI1_MISO PA6
 #define PIN_SPI1_MOSI PA7
 #define PIN_SPI1_SCK PA5

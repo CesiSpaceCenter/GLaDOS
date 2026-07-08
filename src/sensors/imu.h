@@ -30,7 +30,6 @@ IMUData last_imu_data;
 ICM42688 imu(*bnp::spi[GYRO_SPI], PIN_GYRO_2_CS);
 
 void imu_init() {
-    Serial.println("sensors init");
     if (imu.begin() < 0) {
 		bnp::panic("failed to init IMU");
 	}

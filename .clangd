@@ -3,3 +3,10 @@ CompileFlags:
     - -U__GNUC__
     - -D__GNUC__=12
   Compiler: ~/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc
+Diagnostics:
+  ClangTidy:
+    Add: [bugprone-unsafe-functions]
+    CheckOptions:
+      bugprone-unsafe-functions.ReportDefaultFunctions: 'false'
+      bugprone-unsafe-functions.CustomFunctions: '^::Print::printf$, printf, Arduino printf is not thread-safe and will crash FreeRTOS'
+ColumnLimit: 0
