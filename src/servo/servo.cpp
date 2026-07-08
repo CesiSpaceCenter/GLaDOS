@@ -1,20 +1,13 @@
-#ifndef _RACER_SERVO_H
-#define _RACER_SERVO_H
+#include "servo.h"
 
-#include <bnp.h>
-#include <drivers/digitalOutput.h>
-#include <Servo.h>
+bnp::DigitalOutput racer::servo::power(PIN_S4, HIGH, false);
 
-Servo servo;
-
-bnp::DigitalOutput servoPower(PIN_S4, HIGH, false);
-
-void servo_init() {
-    servoPower.begin();
+void racer::servo::init() {
+    power.begin();
     servo.attach(PIN_UART6_RX);
 }
 
-void servo_move(int targetPos) {
+void racer::servo::move(int targetPos) {
   int startPos = servo.read();
 
   int distance = abs(targetPos - startPos);
@@ -46,8 +39,3 @@ void servo_move(int targetPos) {
 
   servo.write(targetPos);
 }
-
-
-
-
-#endif

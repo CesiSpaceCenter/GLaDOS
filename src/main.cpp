@@ -6,21 +6,22 @@
 #include <hal/board.h>
 #include <freertos_utils.h>
 
-#include "ahrs.h"
-#include "led.h"
+#include "ahrs/ahrs.h"
+#include "led/led.h"
 #include "sensors/sensors.h"
-#include "tm.h"
-#include "cmd.h"
-
+#include "sensors/bar.h"
+#include "tm/tm.h"
+#include "cmd/cmd.h"
+#include "blackbox/blackbox.h"
 
 // ACU
-bnp::DigitalOutput cameraPower(PIN_IO1, LOW, true);
+bnp::DigitalOutput camera_power(PIN_IO1, LOW, true);
 
 static void mainThread(void *arg) {
   UNUSED(arg);
   while (true) {
     bnp::sleep(1000);
-    BNP_LOG("{}, bar:{:.7}", millis(), bar_data.pressure);
+    BNP_LOG("{}, bar:{:.7}", millis(), racer::sensors::bar::data.pressure);
 
   }
 }
@@ -30,26 +31,26 @@ void setup() {
   bnp::init();
   BNP_LOG("bnp init ok - acu");
   bnp::sleep(100);
-  led.begin();
-  //cameraPower.begin();
+
+  camera_power.begin();
 
   bnp::sleep(100);
 
-  led_init();
-  sensors_init();
-  ahrs_init();
+  racer::led::init();
+  racer::sensors::init();
+  racer::ahrs::init();
 
-  bnp::freertos::create_task(cmd_task, 1, "cmd");
-  bnp::freertos::create_task(led_task, 1, "led");
-  bnp::freertos::create_task(sensors_task, 1, "sensors");
+  bnp::freertos::create_task(racer::cmd::task, 1, "cmd");
+  bnp::freertos::create_task(racer::led::task, 1, "led");
+  bnp::freertos::create_task(racer::sensors::task, 1, "sensors");
   bnp::freertos::create_task(mainThread, 2, "main");
-  bnp::freertos::create_task(ahrs_task, 1, "ahrs");
-  bnp::freertos::create_task(tm_task, 2, "tm");
+  bnp::freertos::create_task(racer::ahrs::task, 1, "ahrs");
+  bnp::freertos::create_task(racer::tm::task, 2, "tm");
 
   BNP_LOG("init ok");
 
   vTaskStartScheduler();
-  bnp::panic("Not enough RAM");
+  bnp::panic("not enough RAM");
 }
 
 void loop() {}

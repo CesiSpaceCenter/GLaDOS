@@ -1,11 +1,10 @@
-#ifndef _RACER_CMD_H
-#define _RACER_CMD_H
+#include "cmd.h"
 
 #include <bnp.h>
 #include <log.h>
-#include "FreeRTOS_ps.h"
+#include <FreeRTOS_ps.h>
 
-static void cmd_task(void *arg) {
+void racer::cmd::task(void* arg) {
   UNUSED(arg);
   while (true) {
     bnp::sleep(100);
@@ -57,5 +56,3 @@ static void cmd_task(void *arg) {
     }
   }
 }
-
-#endif
