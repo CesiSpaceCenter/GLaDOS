@@ -16,6 +16,7 @@
 #include "servo.h"
 #include "led.h"
 #include "optocom.h"
+#include "cmd.h"
 
 bnp::DigitalOutput servoPower(PIN_S4, HIGH, false);
 
@@ -71,40 +72,4 @@ void setup() {
 }
 
 void loop() {
-    if (Serial.available()) {
-        String inputString = Serial.readStringUntil('\n');
-        inputString.trim();
-
-        int spaceIndex = inputString.lastIndexOf(' ');
-
-        String actionStr = "";
-        int value = 0;
-
-        if (spaceIndex != -1 && isDigit(inputString.charAt(spaceIndex + 1))) {
-            actionStr = inputString.substring(0, spaceIndex);
-            String valueStr = inputString.substring(spaceIndex + 1);
-            value = valueStr.toInt();
-        } else {
-            actionStr = inputString;
-        }
-
-        actionStr.trim();
-        if (actionStr == "reset" || actionStr == "r") {
-            bnp::reset();
-		} else if (actionStr == "bootloader" || actionStr == "b") {
-        	bnp::jump_to_bootloader();
-        } else if (actionStr == "servo on") {
-            servoPower.on();
-        } else if (actionStr == "servo off") {
-            servoPower.off();
-        } else if (actionStr == "cam on") {
-            cameraPower.on();
-        } else if (actionStr == "cam off") {
-            cameraPower.off();
-        } else if (actionStr == "servo set") {
-            servo_move(value);
-        } else {
-            Serial.print("unknown command: "); Serial.println(actionStr);
-        }
-    }
 }
