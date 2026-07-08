@@ -3,6 +3,8 @@
 #include <bnp.h>
 #include <hal/board.h>
 #include <drivers/digitalOutput.h>
+#include <hal/board.h>
+#include <freertos_utils.h>
 #include <log.h>
 
 #include "sensors/sensors.h"
@@ -49,17 +51,18 @@ void setup() {
     //gnss_init();
     //blackbox_init();
 
-    bnp::create_task(led_task, 2, "led");
-    bnp::create_task(screen_task, 2, "screen");
-    bnp::create_task(sensors_task, 1, "sensors");
-    bnp::create_task(mainThread, 0, "main");
-    bnp::create_task(optocom_task, 0, "optocom");
-    //bnp::create_task(gnss_task, 2, "gnss");
-    bnp::create_task(ahrs_task, 1, "ahrs");
-    bnp::create_task(tm_task, 2, "tm");
-    //bnp::create_task(blackbox_task, 2, "blackbox");
+  bnp::freertos::create_task(cmd_task, 1, "cmd");
+  bnp::freertos::create_task(led_task, 1, "led");
+  // bnp::freertos::create_task(screen_task,0, "screen");
+  bnp::freertos::create_task(sensors_task, 1, "sensors");
+  bnp::freertos::create_task(mainThread, 2, "main");
+  // bnp::freertos::create_task(optocom_task, 0, "optocom");
+  // bnp::freertos::create_task(gnss_task, 2, "gnss");
+  bnp::freertos::create_task(ahrs_task, 1, "ahrs");
+  bnp::freertos::create_task(tm_task, 2, "tm");
+  // bnp::freertos::create_task(blackbox_task, 2, "blackbox");
 
-    Serial.println("init ok");
+  BNP_LOG("init ok");
 
     blackbox_print_all();
 
