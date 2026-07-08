@@ -1,36 +1,35 @@
 #include "spi.h"
 #include "bnp.h"
+#include "log.h"
+#include <fmt.h>
 
 void bnp::SPIManager::init() {
-    Serial.print("spi: enabled SPI buses: ");
-
     #if SPI1_ENABLE
-    Serial.print("SPI1 ");
     this->operator[](1)->begin();
     #endif
-    
+
     #if SPI2_ENABLE
-    Serial.print("SPI2 ");
     this->operator[](2)->begin();
     #endif
 
     #if SPI3_ENABLE
-    Serial.print("SPI3 ");
     this->operator[](3)->begin();
     #endif
-    Serial.println("");
+
+    BNP_LOG(
+        "enabled SPI buses: {}{}{}",
+        (SPI1_ENABLE ? "SPI1 ": ""), (SPI2_ENABLE ? "SPI2 ": ""), (SPI3_ENABLE ? "SPI3 ": "")
+    );
 }
 
 SPIClass* bnp::SPIManager::operator[](int index) {
     if (index < 1 || index > bnp::num_spi_buses) {
-        String error_msg = "SPI bus index out of range " + String(index);
-        bnp::panic(error_msg.c_str());
+        bnp::panic(fmt::format("SPI bus index out of range {}", index));
         return nullptr;
     }
     SPIClass* instance = this->spi_buses[index-1];
     if (instance == nullptr) {
-        String error_msg = "tried to use invalid SPI bus " + String(index);
-        bnp::panic(error_msg.c_str());
+        bnp::panic(fmt::format("tried to use invalid SPI bus {}", index));
         return nullptr;
     }
     return instance;

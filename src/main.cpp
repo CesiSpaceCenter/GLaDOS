@@ -3,7 +3,7 @@
 #include <bnp.h>
 #include <hal/board.h>
 #include <drivers/digitalOutput.h>
-#include <drivers/digitalInput.h>
+#include <log.h>
 
 #include "sensors/sensors.h"
 #include "ahrs.h"
@@ -20,32 +20,19 @@ bnp::DigitalOutput servoPower(PIN_S4, HIGH, false);
 // ACU
 bnp::DigitalOutput cameraPower(PIN_IO1, LOW, true);
 
-static void mainThread(void* arg) {
+static void mainThread(void *arg) {
     UNUSED(arg);
-
-
     while (true) {
-        bnp::sleep(100);
-        //Serial.println(pulseIn(PIN_UART1_RX, HIGH));
-        //servo.write(0);
-        //cipLed.on();
-        //optocom.on();
-        //cipLed.off();
-        //optocom.off();
-        //Serial.println(digitalRead(PIN_UART1_RX));
-        //beeper.toggle();
-        /*Serial.print(millis());        Serial.println("  loop");
-        servo.write(5);
-        bnp::sleep(10);
-        servo.write(6);
-        bnp::sleep(10);*/
+    bnp::sleep(1000);
+    BNP_LOG("{}, bar:{:.7}", millis(), bar_data.pressure);
+
     }
 }
 
 void setup() {
     delay(2000);
     bnp::init();
-    Serial.println("bnp init ok - acu");
+    BNP_LOG("bnp init ok - acu");
     bnp::sleep(100);
     led.begin();
     servoPower.begin();

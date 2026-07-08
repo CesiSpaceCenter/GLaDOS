@@ -1,1 +1,1 @@
-#include "boards/FLYWOOF722PROV2.h"
+#include "boards/DFR_F722_DUAL_HD.h"

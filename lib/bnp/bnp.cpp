@@ -1,6 +1,8 @@
 #include "bnp.h"
 #include "hal/board.h"
-#include <Arduino.h>
+#include <log.h>
+#include <string>
+#include <fmt.h>
 
 void bnp::panic(const char* message) {
     digitalWrite(PIN_LED, LOW);
@@ -12,6 +14,8 @@ void bnp::panic(const char* message) {
         Serial.println(message);
         delay(1000);
     }
+void bnp::panic(std::string message) {
+    bnp::panic(message.c_str());
 }
 
 void bnp::reset() {
@@ -21,8 +25,9 @@ void bnp::reset() {
 void bnp::init() {
     pinMode(PIN_LED, OUTPUT);
     digitalWrite(PIN_LED, HIGH);
-    Serial.begin(9600);
-    Serial.println("bnp init");
+    Serial.begin(115200);
+    bnp::log::init();
+    BNP_LOG("bnp init");
     bnp::i2c.init();
     bnp::spi.init();
     bnp::uart.init();
