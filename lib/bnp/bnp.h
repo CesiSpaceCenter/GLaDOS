@@ -1,7 +1,8 @@
 #ifndef BNP_BNP_H
 #define BNP_BNP_H
 
-#include <freertos_hooks.h>
+#include "bnp_config.h"
+#include <freertos/hooks.h>
 #include <STM32FreeRTOS.h>
 #include "hal/i2c.h"
 #include "hal/spi.h"

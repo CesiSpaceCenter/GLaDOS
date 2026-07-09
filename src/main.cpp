@@ -1,10 +1,9 @@
 #include <Arduino.h>
 #include <bnp.h>
 #include <log.h>
-#include <drivers/digitalInput.h>
-#include <drivers/digitalOutput.h>
-#include <hal/board.h>
-#include <freertos_utils.h>
+#include <hal/digitalInput.h>
+#include <hal/digitalOutput.h>
+#include <freertos/utils.h>
 
 #include "ahrs/ahrs.h"
 #include "led/led.h"
@@ -37,6 +36,7 @@ void setup() {
   bnp::sleep(100);
 
   racer::led::init();
+  racer::blackbox::init();
   racer::sensors::init();
   racer::ahrs::init();
 
@@ -45,7 +45,7 @@ void setup() {
   bnp::freertos::create_task(racer::sensors::task, 1, "sensors");
   bnp::freertos::create_task(mainThread, 2, "main");
   bnp::freertos::create_task(racer::ahrs::task, 1, "ahrs");
-  bnp::freertos::create_task(racer::tm::task, 2, "tm");
+  //bnp::freertos::create_task(racer::tm::task, 2, "tm");
 
   BNP_LOG("init ok");
 

@@ -1,6 +1,7 @@
 #ifndef _RACER_BLACKBOX_H
 #define _RACER_BLACKBOX_H
 
+
 #include <bnp.h>
 #include <STM32FreeRTOS.h>
 #include <Adafruit_SPIFlash.h>

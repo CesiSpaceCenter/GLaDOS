@@ -2,8 +2,7 @@
 #define _RACER_SENSORS_H
 
 #include <bnp.h>
-#include <drivers/analogInput.h>
-#include <hal/board.h>
+#include <hal/analogInput.h>
 #include <log.h>
 #include <STM32FreeRTOS.h>
 //#include <AK8975.h>

@@ -2,7 +2,6 @@
 #define BNP_I2C_H
 
 #include <Wire.h>
-#include "board.h"
 
 namespace bnp {
     const int num_i2c_buses = 3;

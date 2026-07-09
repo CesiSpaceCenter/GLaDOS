@@ -1,7 +1,6 @@
 #ifndef BNP_UART_H
 #define BNP_UART_H
 
-#include "board.h"
 #include <HardwareSerial.h>
 
 namespace bnp {
@@ -13,7 +12,7 @@ namespace bnp {
     #if UART2_ENABLE
     extern HardwareSerial uart2;
     #endif
-    
+
     #if UART3_ENABLE
     extern HardwareSerial uart3;
     #endif
@@ -71,7 +70,7 @@ namespace bnp {
             #else
             nullptr,
             #endif
-            
+
             #if UART3_ENABLE
             &uart3,
             #else

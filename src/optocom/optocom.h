@@ -1,14 +1,13 @@
 #ifndef _RACER_OPTOCOM_H
 #define _RACER_OPTOCOM_H
 
-#include "hal/boards/DFR_F722_DUAL_HD.h"
 #include <bnp.h>
-#include <drivers/digitalInput.h>
+#include <hal/digitalInput.h>
 
 namespace racer::optocom {
     extern uint8_t pin;
     extern bnp::DigitalInput optocom;
-    
+
     enum State {
         BOOTING = 0,
         STANDBY = 3,

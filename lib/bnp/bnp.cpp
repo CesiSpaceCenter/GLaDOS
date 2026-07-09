@@ -1,18 +1,17 @@
 #include "bnp.h"
-#include "hal/board.h"
 #include <log.h>
 #include <string>
 #include <fmt.h>
 
 void bnp::panic(const char* message) {
     digitalWrite(PIN_LED, LOW);
-    Serial.println("---- PANIC ----");
-    Serial.println(message);
-    Serial.println("type 'b' to reboot into bootloader");
     for (int i = 15; i >= 0; i--) {
         if (Serial.available() && Serial.read() == 'b') {
             bnp::jump_to_bootloader();
         }
+        Serial.println("---- PANIC ----");
+        Serial.println(message);
+        Serial.println("type 'b' to reboot into bootloader");
         Serial.print("reseting in "); Serial.print(i); Serial.println(" seconds");
         delay(1000);
     }

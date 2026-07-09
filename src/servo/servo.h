@@ -2,7 +2,7 @@
 #define _RACER_SERVO_H
 
 #include <bnp.h>
-#include <drivers/digitalOutput.h>
+#include <hal/digitalOutput.h>
 #include <Servo.h>
 
 namespace racer::servo {

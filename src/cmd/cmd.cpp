@@ -2,7 +2,7 @@
 
 #include <bnp.h>
 #include <log.h>
-#include <FreeRTOS_ps.h>
+#include <freertos/FreeRTOS_ps.h>
 
 void racer::cmd::task(void* arg) {
   UNUSED(arg);

@@ -2,7 +2,6 @@
 #define BNP_SPI_H
 
 #include <SPI.h>
-#include "board.h"
 
 namespace bnp {
     const int num_spi_buses = 3;

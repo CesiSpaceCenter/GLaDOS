@@ -1,4 +1,6 @@
-#include "freertos_hooks.h"
+#include "hooks.h"
+
+#include <Arduino.h>
 
 void vApplicationStackOverflowHook(void* pxTask, char* pcTaskName) {
     __disable_irq();

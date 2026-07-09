@@ -6,6 +6,36 @@ Adafruit_SPIFlash racer::blackbox::flash(&flashTransport);
 FatVolume racer::blackbox::fatfs;
 File32 racer::blackbox::file;
 
+void racer::blackbox::init() {
+    BNP_LOG("initializing flash");
+    if (!flash.begin()) bnp::panic("failed to init flash");
+    BNP_LOG("flash capacity: {}MB\t JEDEC ID: {:x}", flash.size()/(1024*1024), flash.getJEDECID());
+
+    BNP_LOG("initializing fatfs");
+    if (!fatfs.begin(&flash)) bnp::panic("failed to mount filesystem");
+
+    // dummy file just to have an object created
+    file = fatfs.open("xxx", FILE_READ);
+    file.close();
+
+    BNP_LOG("initialization done");
+}
+
+void racer::blackbox::task(void* arg) {
+    UNUSED(arg);
+    while (true) {
+        start();
+        bnp::sleep(20);
+        for (int i = 0; i < 100; i++) {
+            file.println(millis());
+            bnp::sleep(20);
+        }
+        end();
+        print_last();
+        bnp::sleep(10000);
+    }
+}
+
 int racer::blackbox::get_last_index() {
     int lastIndex = -1;
     for (int i = 0; i < 1000; i++) {
@@ -15,6 +45,7 @@ int racer::blackbox::get_last_index() {
             return lastIndex;
         }
     }
+    return -1;
 }
 
 void racer::blackbox::start() {
@@ -56,35 +87,5 @@ void racer::blackbox::print_all() {
         } else {
             break;
         }
-    }
-}
-
-void racer::blackbox::init() {
-    BNP_LOG("initializing flash");
-    if (!flash.begin()) bnp::panic("failed to init flash");
-    BNP_LOG("flash capacity: {}MB\t JEDEC ID: {:x}", flash.size()/(1024*1024), flash.getJEDECID());
-
-    BNP_LOG("initializing fatfs");
-    if (!fatfs.begin(&flash)) bnp::panic("failed to mount filesystem");
-
-    // dummy file just to have an object created
-    file = fatfs.open("xxx", FILE_READ);
-    file.close();
-
-    BNP_LOG("initialization done");
-}
-
-void racer::blackbox::task(void* arg) {
-    UNUSED(arg);
-    while (true) {
-        start();
-        bnp::sleep(20);
-        for (int i = 0; i < 100; i++) {
-            file.println(millis());
-            bnp::sleep(20);
-        }
-        end();
-        print_last();
-        bnp::sleep(10000);
     }
 }

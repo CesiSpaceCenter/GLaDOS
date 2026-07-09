@@ -2,7 +2,7 @@
 #define _RACER_LED_H
 
 #include <bnp.h>
-#include <drivers/digitalOutput.h>
+#include <hal/digitalOutput.h>
 
 namespace racer::led {
   extern bnp::DigitalOutput led;
