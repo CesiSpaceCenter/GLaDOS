@@ -1,4 +1,5 @@
 #include "imu.h"
+#include <fmt.h>
 
 racer::sensors::imu::IMUData racer::sensors::imu::data;
 racer::sensors::imu::IMUData racer::sensors::imu::calib = {
@@ -13,11 +14,12 @@ racer::sensors::imu::IMUData racer::sensors::imu::calib = {
 racer::sensors::imu::IMUData racer::sensors::imu::sum_data;
 racer::sensors::imu::IMUData racer::sensors::imu::last_data;
 
-ICM42688 racer::sensors::imu::imu(*bnp::spi[GYRO_SPI], PIN_GYRO_2_CS);
+ICM42688 racer::sensors::imu::imu(*bnp::spi[GYRO_SPI], PIN_GYRO_1_CS);
 
 void racer::sensors::imu::init() {
-    if (imu.begin() < 0) {
-		bnp::panic("failed to init IMU");
+    int rc = imu.begin();
+    if (rc < 0) {
+		bnp::panic(fmt::format("failed to init IMU (rc={})", rc));
 	}
 
     if (imu.setAccelODR(ICM42688::odr200) < 0 || imu.setGyroODR(ICM42688::odr200) < 0) {
