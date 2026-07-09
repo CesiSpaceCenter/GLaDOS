@@ -1,6 +1,6 @@
-#include "../boards/DFR_F722_DUAL_HD.h"
+#include "../boards/FLYWOOF722PROV2.h"
 
-#define I2C1_ENABLE false
+#define I2C1_ENABLE true
 #define I2C2_ENABLE true
 #define I2C3_ENABLE false
 

@@ -38,57 +38,45 @@
 #define PIN_LED PC15
 
 
-#define UART1_ENABLE false
 #define PIN_UART1_TX PA9
 #define PIN_UART1_RX PA10
 
-#define UART2_ENABLE false
 #define PIN_UART2_TX PA2
 #define PIN_UART2_RX PA3
 
-#define UART3_ENABLE false
 #define PIN_UART3_TX PB10
 #define PIN_UART3_RX PB11
 
-#define UART4_ENABLE false
 #define PIN_UART4_TX PA0
 #define PIN_UART4_RX PA1
 
-#define UART5_ENABLE false
 #define PIN_UART5_TX PC12
 #define PIN_UART5_RX PD2
 
-#define UART6_ENABLE false
 #define PIN_UART6_TX PC6
 #define PIN_UART6_RX PC7
 
 
-#define I2C1_ENABLE false
 #define PIN_I2C1_SCL PB8
 #define PIN_I2C1_SDA PB9
 
-#define I2C2_ENABLE false
-#define PIN_I2C2_SCL -1 // I2C2_SCL_PIN
-#define PIN_I2C2_SDA -1 // I2C2_SDA_PIN
+#define PIN_I2C2_SCL PB10
+#define PIN_I2C2_SDA PB11
 
-#define I2C3_ENABLE false
-#define PIN_I2C3_SCL -1 // I2C3_SCL_PIN
-#define PIN_I2C3_SDA -1 // I2C3_SDA_PIN
+#define PIN_I2C3_SCL PA8
+#define PIN_I2C3_SDA PC9
 
 
-#define SPI1_ENABLE true
 #define PIN_SPI1_MISO PA6
-#define PIN_SPI1_MOSI PA7
+#define PIN_SPI1_MOSI PA3
 #define PIN_SPI1_SCK PA5
 
-#define SPI2_ENABLE false
 #define PIN_SPI2_MISO PB14
 #define PIN_SPI2_MOSI PB15
 #define PIN_SPI2_SCK PB13
 
-#define SPI3_ENABLE false
 #define PIN_SPI3_MISO PC11
-#define PIN_SPI3_MOSI PB5
+#define PIN_SPI3_MOSI PB5_ALT1
 #define PIN_SPI3_SCK PC10
 
 
