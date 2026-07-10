@@ -2,10 +2,12 @@
 #include <log.h>
 #include <string>
 #include <fmt.h>
+#include <IWatchdog.h>
 
 void bnp::panic(const char* message) {
     digitalWrite(PIN_LED, LOW);
     for (int i = 15; i >= 0; i--) {
+        IWatchdog.reload();
         if (Serial.available() && Serial.read() == 'b') {
             bnp::jump_to_bootloader();
         }
@@ -27,11 +29,15 @@ void bnp::reset() {
 }
 
 void bnp::init() {
+    IWatchdog.begin(4000000);
     pinMode(PIN_LED, OUTPUT);
     digitalWrite(PIN_LED, HIGH);
     Serial.begin(115200);
     bnp::log::init();
     BNP_LOG("bnp init");
+    if (IWatchdog.isReset(true)) {
+        BNP_LOG("system has resumed from watchdog reset");
+    }
     bnp::i2c.init();
     bnp::spi.init();
     bnp::uart.init();

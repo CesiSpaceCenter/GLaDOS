@@ -4,6 +4,7 @@
 #include <hal/digitalInput.h>
 #include <hal/digitalOutput.h>
 #include <freertos/utils.h>
+#include <IWatchdog.h>
 
 #include "ahrs/ahrs.h"
 #include "led/led.h"
@@ -53,4 +54,7 @@ void setup() {
   bnp::panic("not enough RAM");
 }
 
-void loop() {}
+void loop() {
+  IWatchdog.reload();
+  bnp::sleep(2000);
+}
