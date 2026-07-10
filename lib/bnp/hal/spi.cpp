@@ -5,6 +5,9 @@
 
 void bnp::SPIManager::init() {
     #if SPI1_ENABLE
+    this->operator[](1)->setMISO(PIN_SPI1_MISO);
+    this->operator[](1)->setMOSI(PIN_SPI1_MOSI);
+    this->operator[](1)->setSCLK(PIN_SPI1_SCK);
     this->operator[](1)->begin();
     #endif
 

@@ -17,6 +17,7 @@ racer::sensors::imu::IMUData racer::sensors::imu::last_data;
 ICM42688 racer::sensors::imu::imu(*bnp::spi[GYRO_SPI], PIN_GYRO_1_CS);
 
 void racer::sensors::imu::init() {
+    BNP_LOG("initializing IMU on SPI{}", GYRO_SPI);
     int rc = imu.begin();
     if (rc < 0) {
 		bnp::panic(fmt::format("failed to init IMU (rc={})", rc));

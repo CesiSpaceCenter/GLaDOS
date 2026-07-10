@@ -7,7 +7,7 @@ FatVolume racer::blackbox::fatfs;
 File32 racer::blackbox::file;
 
 void racer::blackbox::init() {
-    BNP_LOG("initializing flash");
+    BNP_LOG("initializing flash on bus SPI{}", FLASH_SPI);
     if (!flash.begin()) bnp::panic("failed to init flash");
     BNP_LOG("flash capacity: {}MB\t JEDEC ID: {:x}", flash.size()/(1024*1024), flash.getJEDECID());
 
