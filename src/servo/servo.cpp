@@ -1,4 +1,7 @@
 #include "servo.h"
+#include "log.h"
+
+Servo racer::servo::servo;
 
 bnp::DigitalOutput racer::servo::power(PIN_S4, HIGH, false);
 
@@ -34,7 +37,7 @@ void racer::servo::move(int targetPos) {
 
     servo.write((int)currentPos);
 
-    delay(15);
+    bnp::sleep(15);
   }
 
   servo.write(targetPos);

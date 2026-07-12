@@ -6,7 +6,7 @@
 #include <Servo.h>
 
 namespace racer::servo {
-  Servo servo;
+  extern Servo servo;
 
   extern bnp::DigitalOutput power;
 
