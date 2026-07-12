@@ -1,7 +1,7 @@
 #include "optocom.h"
+#include "state.h"
+#include <log.h>
 
-
-racer::optocom::State racer::optocom::remote_state = BOOTING;
 
 uint8_t racer::optocom::pin = PIN_UART1_RX;
 
@@ -15,19 +15,19 @@ void racer::optocom::task(void *arg) {
     while (true) {
         int t = pulseIn(pin, HIGH);
         int state = (int)round(500000.0/t);
-
+        BNP_LOG("scu state = {}", t);
         switch (state) {
             case 3:
-                remote_state = STANDBY;
+                state::remote_state = racer::state::STANDBY;
                 break;
             case 6:
-                remote_state = ARMED;
+                state::remote_state = racer::state::ARMED;
                 break;
             case 9:
-                remote_state = ASCENT;
+                state::remote_state = racer::state::ASCENT;
                 break;
             case 12:
-                remote_state = DESCENT;
+                state::remote_state = racer::state::DESCENT;
         }
 
         bnp::sleep(500);

@@ -1,7 +1,7 @@
 #include "screen.h"
 #include "sensors/sensors.h"
 #include "sensors/bar.h"
-#include "optocom/optocom.h"
+#include "state.h"
 #include "racer_logo.h"
 #include "fonts/FreeSansBoldOblique9pt7b.h"
 #include "fonts/Petme8x8.h"
@@ -49,27 +49,27 @@ void racer::screen::task(void* arg) {
         display.fillRect(28, 40, 32, 11, 1);
         draw_text("TEMP", 29, 50, 0);
         display.drawRect(59, 40, 42, 11, 1);
-        sprintf(buf, "%.1f C", sensors::bar::data.temperature);
+        sprintf(buf, "%.1fC", sensors::bar::data.temperature);
         draw_text(buf, 60, 50, 1);
 
         display.fillRect(28, 52, 32, 11, 1);
         draw_text("SCU", 29, 62, 0);
         display.drawRect(59, 52, 42, 11, 1);
         String state_text = "";
-        switch (optocom::remote_state) {
-            case optocom::State::BOOTING:
+        switch (state::remote_state) {
+            case state::BOOTING:
                 state_text = "BOOT";
                 break;
-            case optocom::State::STANDBY:
+            case state::STANDBY:
                 state_text = "STDBY";
                 break;
-            case optocom::State::ARMED:
+            case state::ARMED:
                 state_text = "ARMED";
                 break;
-            case optocom::State::ASCENT:
+            case state::ASCENT:
                 state_text = "ASCNT";
                 break;
-            case optocom::State::DESCENT:
+            case state::DESCENT:
                 state_text = "DESCT";
                 break;
         }
