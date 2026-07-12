@@ -3,6 +3,7 @@
 #include <bnp.h>
 #include <log.h>
 #include <freertos/FreeRTOS_ps.h>
+#include "servo/servo.h"
 
 void racer::cmd::task(void* arg) {
   UNUSED(arg);
@@ -38,15 +39,15 @@ void racer::cmd::task(void* arg) {
         } else if (actionStr == "bootloader" || actionStr == "b") {
           bnp::jump_to_bootloader();
         } else if (actionStr == "servo on") {
-          //servoPower.on();
+          servo::power.on();
         } else if (actionStr == "servo off") {
-          //servoPower.off();
+          servo::power.off();
         } else if (actionStr == "cam on") {
           //cameraPower.on();
         } else if (actionStr == "cam off") {
           //cameraPower.off();
         } else if (actionStr == "servo set") {
-          //servo_move(value);
+          servo::move(value);
         } else if (actionStr == "ps") {
           freertos_ps(Serial);
         } else {

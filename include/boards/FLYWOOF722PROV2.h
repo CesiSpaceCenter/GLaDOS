@@ -68,7 +68,7 @@
 
 
 #define PIN_SPI1_MISO PA6
-#define PIN_SPI1_MOSI PA3
+#define PIN_SPI1_MOSI PA7
 #define PIN_SPI1_SCK PA5
 
 #define PIN_SPI2_MISO PB14

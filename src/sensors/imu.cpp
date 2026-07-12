@@ -1,5 +1,6 @@
 #include "imu.h"
 #include <fmt.h>
+#include <log.h>
 
 racer::sensors::imu::IMUData racer::sensors::imu::data;
 racer::sensors::imu::IMUData racer::sensors::imu::calib = {
